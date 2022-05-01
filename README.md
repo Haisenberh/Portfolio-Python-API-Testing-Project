@@ -1,6 +1,6 @@
 # Test Engineer Portfolio example
 
-This is a project that contains example of backend tests written in Python, that contains:
+This is a project that contains example of backend tests written in Python:
 - backend REST API tests tests based [pytest](https://pypi.org/project/pytest/) 
 - REST API requests are sending using [requests](https://pypi.org/project/requests/) module
 - reports are saving using [pytest-html](https://pypi.org/project/pytest-html/) extension. You can see examples of reports in */home/reports* folder
