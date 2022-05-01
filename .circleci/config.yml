@@ -1,0 +1,38 @@
+version: 2
+jobs:
+  run_all_tests:
+    docker: # run the steps with Docker
+      - image: circleci/python:3.9-browsers
+
+    steps: # steps that comprise the `build` job
+      - checkout # check out source code to working directory
+
+      #  Wait for Postgres to be ready before proceeding
+      - run:
+          name: Install needed requirements
+          command:
+            pip install -r requirements.txt --user
+
+      - run:
+          name: Run api tests
+          environment: # environment variables for the database url and path to migration files
+            GOREST_API_TOKEN: "7e9ce165b545b66022ce30fd3a19c199243e06ac789ba466e35200651909b2b6"
+            HOME_URL: "http://automationpractice.multiformis.com/index.php"
+          command: python3 -m py.test tests/api_tests/test_api.py --html=repo/api-report.html --self-contained-html || true
+
+      - run:
+          name: Trigger web selenium tests
+          environment: # environment variables for the database url and path to migration files
+            BROWSER: "firefox"
+            HOME_URL: "http://automationpractice.multiformis.com/index.php"
+          command: python3 -m py.test -v -m web_tests --disable-warnings --html=repo/e2e-report.html --self-contained-html || true
+
+      - run:
+          name: Trigger load test against "http://automationpractice.multiformis.com"
+          command: locust -f tests/load_tests/load_test_automation_practice.py --headless -u 1000 -r 40 -t 15s --html load-test-automation-practise-report.html
+
+workflows:
+  version: 2
+  build-workflow:
+    jobs:
+      - run_all_tests
