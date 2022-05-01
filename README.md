@@ -3,7 +3,7 @@
 This is a project that contains example of backend tests written in Python:
 - backend REST API tests tests based [pytest](https://pypi.org/project/pytest/) 
 - REST API requests are sending using [requests](https://pypi.org/project/requests/) module
-- These API tests are also running on [CircleCi](https://circleci.com/) continious integration tool
+- API tests can also run on cloud using [CircleCi](https://circleci.com/) continuous integration tool
 - reports are saving using [pytest-html](https://pypi.org/project/pytest-html/) extension. You can see examples of reports in */home/reports* folder
 
 ### Please read instrucations bellow how to set up the project.
