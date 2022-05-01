@@ -1,4 +1,4 @@
-# Test Engineer Portfolio example
+# Test Engineer API TESTS project Portfolio example
 
 This is a project that contains example of backend tests written in Python:
 - backend REST API tests tests based [pytest](https://pypi.org/project/pytest/) 
@@ -40,5 +40,3 @@ Run all tests:
 ```
 circleci local execute --job run_api_tests
 ```
-
-
